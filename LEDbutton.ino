@@ -3,7 +3,9 @@
 int led1 = 7; 
 int led2 = 8;
 int led3 = 9;
-int led4 = 10;
+int pin1 = 10;
+
+bool pressed = false;
 
 
 void setup() {
@@ -12,18 +14,24 @@ void setup() {
   pinMode(led1,  OUTPUT);
   pinMode(led2, OUTPUT);
   pinMode(led3, OUTPUT);
-  pinMode(led4, INPUT);
+  pinMode(pin1, INPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int read = digitalRead(10); // checks if you pressed the button
-  if (read==1)
+  if(digitalRead(pin1) == 1) // checks if you pressed the button
+  {
+    pressed = true;
+  }
+
+  
+  if (pressed)
   {
     AllOnOff(); // you can add more funcitons to make the show last longer
     LeftRight();
     RightLeft();
     Checkered();
+    pressed = false;
   }
   delay(200);
 
